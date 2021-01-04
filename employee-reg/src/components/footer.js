@@ -1,11 +1,16 @@
 import React from 'react';
+import { Navbar, NavbarBrand, Container } from 'react-bootstrap'
 
 export class Footer extends React.Component{
     render(){
         return(
-            <div>
-                <h1>Footer</h1>
-            </div>
+            <div className="fixed-bottom"> 
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                <Container>
+                    <NavbarBrand>Footer</NavbarBrand>
+                </Container>
+            </Navbar>
+        </div>
         )
     }
 }
