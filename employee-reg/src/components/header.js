@@ -1,27 +1,42 @@
-import React from 'react';
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
+
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Manager } from './manager';
+import { Employee } from './employee';
+import { Content } from './content';
 
 
 export class Header extends React.Component{
     render(){
         return(
-            <div>
-                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                    {/* Brand name  */}
-                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                        <Navbar.Collapse id="responsive-navbar-nav">
-                            <Nav className="mr-auto">
-                                <Nav.Link href="#features">Features</Nav.Link>
-                                <Nav.Link href="#pricing">Pricing</Nav.Link>
-                            </Nav>
-                            <Nav>
-                                <Nav.Link href="#deets">More deets</Nav.Link>
-                                <Nav.Link eventKey={2} href="#memes">Dank memes</Nav.Link>
-                            </Nav>
-                        </Navbar.Collapse>
+            <Router>
+                <div>
+                    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+
+                        {/* Brand name  */}
+                        <Navbar.Brand href="/">Company Registry</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+
+                            <Navbar.Collapse id="responsive-navbar-nav">
+                                <Nav className="mr-auto">
+                                </Nav>
+                                <Nav>
+                                    <Nav.Link href="/manager">Manager</Nav.Link>
+                                    <Nav.Link href="/employee">Employee</Nav.Link>
+                                </Nav>
+                            </Navbar.Collapse>
                     </Navbar>
-            </div>
+
+                    <br />
+                    <Switch>
+                        <Route path='/' component={Content} exact />
+                        <Route path='/manager' component={Manager} />
+                        <Route path='/employee' component={Employee} />
+                        {/* <Route path='/edit:id' component={Edit}></Route> */}
+                    </Switch>
+                </div>
+            </Router>
         )
     }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Navbar, NavbarBrand, Container } from 'react-bootstrap'
 
 export class Footer extends React.Component{
@@ -7,7 +7,7 @@ export class Footer extends React.Component{
             <div className="fixed-bottom"> 
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <NavbarBrand>Footer</NavbarBrand>
+                    <NavbarBrand>MERN Stack Project</NavbarBrand>
                 </Container>
             </Navbar>
         </div>
