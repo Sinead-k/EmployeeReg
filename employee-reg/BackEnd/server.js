@@ -33,7 +33,8 @@ const Schema = mongoose.Schema;
 const empSchema = new Schema({
     username:String,
     name:String,
-    email:String
+    email:String,
+    address:String
 })
 
 const empModel = mongoose.model('customers', empSchema);
