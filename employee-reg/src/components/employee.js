@@ -9,7 +9,7 @@ export class Employee extends React.Component{
                 <Row>
                     {/* Column 1 */}
                     <Col>
-                        <Button variant="outline-info" size="lg" href='/create'>I'm a new employee</Button>{' '}
+                        <Button variant="outline-info" size="lg" href='/newEmp'>I'm a new employee</Button>{' '}
                     </Col>
 
                     {/* Column 2 */}

@@ -7,47 +7,61 @@ export class NewEmp extends React.Component {
         super();
 
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onChangeYear = this.onChangeYear.bind(this);
-        this.onChangePoster = this.onChangePoster.bind(this);
+
+        this.onChangeUsername = this.onChangeUsername.bind(this);
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeEmail = this.onChangeEmail.bind(this);
+        this.onChangeAddress = this.onChangeAddress.bind(this);
 
         this.state = {
-            Title: '',
-            Year: '',
-            Poster: ''
+            Username: '',
+            Name: '',
+            Email: '',
+            Address: ''
         }
     }
 
-    onChangeTitle(e) {
+    onChangeUsername(e) {
         this.setState({
-            Title: e.target.value
+            Username: e.target.value
         });
     }
 
-    onChangeYear(e) {
+    onChangeName(e) {
         this.setState({
-            Year: e.target.value
+            Name: e.target.value
         });
     }
-    onChangePoster(e) {
+    onChangeEmail(e) {
         this.setState({
-            Poster: e.target.value
+            Email: e.target.value
         })
     }
 
+    onChangeAddress(e) {
+        this.setState({
+            Address: e.target.value
+        })
+    }
+
+    // When form is submitted....
     onSubmit(e) {
         e.preventDefault();
-        alert("Movie: " + this.state.Title + " "
-            + this.state.Year + " " +
-            this.state.Poster);
+        alert("Employee: " 
+        + this.state.Username + " " 
+        + this.state.Name + " " 
+        + this.state.Email + " " 
+        + this.state.Address);
 
-            const newMovie ={
-                Title:this.state.Title,
-                Year:this.state.Year,
-                Poster:this.state.Poster
+        // Create a new Employee Model
+            const newEmp ={
+                Username:this.state.Username,
+                Name:this.state.Name,
+                Email:this.state.Email,
+                Address:this.state.Address
             };
 
-        axios.post('http://localhost:4000/api/movies', newMovie)
+        axios.post('http://localhost:4000/api/sample_analytics/customers', newEmp)
         .then(response => console.log(response.data))
         .catch(error => console.log(error));    
 
@@ -58,25 +72,25 @@ export class NewEmp extends React.Component {
             <div className='App'>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Add Movie Title: </label>
+                        <label>Add Movie Username: </label>
                         <input type='text'
                             className='form-control'
-                            value={this.state.Title}
-                            onChange={this.onChangeTitle}></input>
+                            value={this.state.Username}
+                            onChange={this.onChangeUsername}></input>
                     </div>
                     <div className="form-group">
-                        <label>Add Movie Year: </label>
+                        <label>Add Movie Name: </label>
                         <input type='text'
                             className='form-control'
-                            value={this.state.Year}
-                            onChange={this.onChangeYear}></input>
+                            value={this.state.Name}
+                            onChange={this.onChangeName}></input>
                     </div>
                     <div className='form-group'>
-                        <label>Movies Poster: </label>
+                        <label>Movies Email: </label>
                         <textarea type='text'
                             className='form-control'
-                            value={this.state.Poster}
-                            onChange={this.onChangePoster}>
+                            value={this.state.Email}
+                            onChange={this.onChangeEmail}>
                         </textarea>
                     </div>
 
