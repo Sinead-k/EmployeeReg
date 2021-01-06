@@ -1,4 +1,3 @@
-  
 import React from 'react';
 import { Profile } from './profile';
 import axios from 'axios';
@@ -37,7 +36,7 @@ export class Manager extends React.Component {
     render() {
         return (
             <div>
-                <h1>This is the read component.</h1>
+                <h3>Employee Profiles</h3>
                 <Profile employees={this.state.employees} ReloadData={this.ReloadData}></Profile>
             </div>
         );
