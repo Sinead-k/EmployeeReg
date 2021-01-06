@@ -72,32 +72,39 @@ export class NewEmp extends React.Component {
             <div className='App'>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Add Movie Username: </label>
+                        <label>Add Employee Username: </label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Username}
                             onChange={this.onChangeUsername}></input>
                     </div>
                     <div className="form-group">
-                        <label>Add Movie Name: </label>
+                        <label>Add Employee Name: </label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Name}
                             onChange={this.onChangeName}></input>
                     </div>
                     <div className='form-group'>
-                        <label>Movies Email: </label>
+                        <label>Enter Email Address: </label>
                         <textarea type='text'
                             className='form-control'
                             value={this.state.Email}
                             onChange={this.onChangeEmail}>
                         </textarea>
                     </div>
-
+                    <div className='form-group'>
+                        <label>Enter Home Address: </label>
+                        <textarea type='text'
+                            className='form-control'
+                            value={this.state.Address}
+                            onChange={this.onChangeAddress}>
+                        </textarea>
+                    </div>
 
                     <div className="form-group">
                         <input type='submit'
-                            value='Add Movie'
+                            value='Add Employee'
                             className='btn btn-primary'></input>
                     </div>
                 </form>

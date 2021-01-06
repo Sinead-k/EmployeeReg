@@ -32,10 +32,10 @@ mongoose.connect(strConnection, {useNewUrlParser: true});
 const Schema = mongoose.Schema;
 
 const empSchema = new Schema({
-    username:String,
-    name:String,
-    email:String,
-    address:String
+    UserName:String,
+    Name:String,
+    Email:String,
+    Address:String
 })
 
 const empModel = mongoose.model('customers', empSchema);
@@ -59,17 +59,17 @@ app.get('/api/sample_analytics/customers/:id',(req, res)=>{
 // We have to send the new employee information to the database
 app.post('/api/sample_analytics/customers',(req, res)=>{
     console.log('New Employee registered!');
-    console.log(req.body.username);
-    console.log(req.body.name);
-    console.log(req.body.email);
-    console.log(req.body.address);
+    console.log(req.body.UserName);
+    console.log(req.body.Name);
+    console.log(req.body.Email);
+    console.log(req.body.Address);
 
     // Here we create the new employee with their details
     EmpModel.create({
-      username:req.body.username,
-      name:req.body.name,
-      email:req.body.email,
-      address:req.body.address
+      UserName:req.body.UserName,
+      Name:req.body.Name,
+      Email:req.body.Email,
+      Address:req.body.Address
     });
 
     res.render('Employee information saved');
