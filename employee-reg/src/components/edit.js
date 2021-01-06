@@ -1,13 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-export class NewEmp extends React.Component {
+export class Edit extends React.Component {
 
     constructor() {
         super();
 
         this.onSubmit = this.onSubmit.bind(this);
-
+        
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -19,6 +19,25 @@ export class NewEmp extends React.Component {
             Email: '',
             Address: ''
         }
+    }
+
+    // Lifecycle Hook
+    componentDidMount(){
+        console.log("load"+this.props.match.params.id);
+
+        axios.get('http://localhost:4000/api/sample_analytics/customers/'+ this.props.match.params.id)
+        .then((response) =>{
+            this.setState({
+                _id:response.data._id,
+                Username:response.data.username,
+                Name:response.data.name,
+                Email:response.data.email,
+                Address:response.data.address
+            })
+        })
+        .catch((error) =>{
+            console.log(error);
+        })
     }
 
     onChangeUsername(e) {
@@ -37,58 +56,54 @@ export class NewEmp extends React.Component {
             Email: e.target.value
         })
     }
-
     onChangeAddress(e) {
         this.setState({
             Address: e.target.value
         })
     }
 
-    // When form is submitted....
     onSubmit(e) {
         e.preventDefault();
-        alert("Employee: " 
-        + this.state.Username + " " 
-        + this.state.Name + " " 
-        + this.state.Email + " " 
-        + this.state.Address);
+        alert("Employee: " + this.state.Username + " "
+            + this.state.Name + " " +
+            this.state.Email + " " +
+            this.state.Address);
 
-        // Create a new Employee Model
-            const newEmp ={
-                Username:this.state.username,
-                Name:this.state.name,
-                Email:this.state.email,
-                Address:this.state.address
+            const updateEmp = {
+                username:this.state.Username,
+                name:this.state.Name,
+                email:this.state.Email,
+                address:this.state.Address,
+                _id:this.state._id
             };
 
-        axios.post('http://localhost:4000/api/sample_analytics/customers', newEmp)
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error));    
-
+        axios.put('http://localhost:4000/api/sample_analytics/customers/'+this.state._id, updateEmp)
+        .then((res) => {
+            console.log(res.data)
+        })
+        .catch();  
     }
 
     render() {
         return (
-            <div className='App'>
-                <h2>New Employee</h2>
-                {/* A form to take in new employee details */}
+            <div>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Enter Username: </label>
+                        <label>Add Employee Username: </label>
                         <input type='text'
                             className='form-control'
                             value={this.state.username}
                             onChange={this.onChangeUsername}></input>
                     </div>
                     <div className="form-group">
-                        <label>Enter Name: </label>
+                        <label>Enter Employee Name: </label>
                         <input type='text'
                             className='form-control'
                             value={this.state.name}
                             onChange={this.onChangeName}></input>
                     </div>
                     <div className='form-group'>
-                        <label>Enter Email Address: </label>
+                        <label>Enter Email: </label>
                         <textarea type='text'
                             className='form-control'
                             value={this.state.email}
@@ -106,8 +121,8 @@ export class NewEmp extends React.Component {
 
                     <div className="form-group">
                         <input type='submit'
-                            value='Add Employee'
-                            className='btn btn-primary'></input>
+                            value='Edit Employee Information'
+                            className='btn btn-info'></input>
                     </div>
                 </form>
             </div>

@@ -37,7 +37,7 @@ export class EditCard extends React.Component {
                         <blockquote className="blockquote mb-0">
                                 {this.props.employee.email}
                         </blockquote>
-                        <Link to={"/edit/"+ this.props.employee._id} className="btn btn-primary">Edit</Link>
+                        <Link to={"/edit/"+ this.props.employee._id} className="btn btn-info">Edit</Link>
                         <Button variant="danger" onClick={this.DeleteEmp}>Delete</Button>
                     </Card.Body>
                 </Card>
