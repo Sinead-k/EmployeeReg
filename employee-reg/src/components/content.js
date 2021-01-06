@@ -48,7 +48,6 @@ export class Content extends React.Component{
                     </Col>
                 </Row>
                 </Container>
-
             </div>
         )
     }

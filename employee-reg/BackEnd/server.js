@@ -41,10 +41,6 @@ const empSchema = new Schema({
 
 const empModel = mongoose.model('customers', empSchema);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
-
 app.get('/api/sample_analytics/customers', (req, res) => {
     
     empModel.find((err,data)=>{
@@ -61,6 +57,28 @@ app.get('/api/sample_analytics/customers/:id',(req, res)=>{
     })
 })
 
+// The edit method
+app.put('/api/sample_analytics/customers/:id', (req, res) =>{
+    console.log("Update movie: "+req.params.id);
+    console.log(req.body);
+
+    empModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
+        (err, data) =>{
+            req.send(data);
+        })
+})
+
+// The delete method
+app.delete('/api/sample_analytics/customers/:id', (req, res)=>{
+    console.log(req.params.id);
+
+    empModel.findByIdAndDelete({_id:req.params.id},
+         (err, data)=>{
+        res.send(data);
+    })
+})
+
+//The write method
 // We have to send the new employee information to the database
 app.post('/api/sample_analytics/customers',(req, res)=>{
     console.log('New Employee registered!');

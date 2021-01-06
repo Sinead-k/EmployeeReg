@@ -10,7 +10,7 @@ export class EmpCard extends React.Component {
                 <Card>
                     <Card.Header>{this.props.employee.name}</Card.Header>
                     <Card.Body>
-                    <blockquote className="blockquote mb-0">
+                        <blockquote className="blockquote mb-0">
                                 {this.props.employee.username}
                         </blockquote>
                         <blockquote className="blockquote mb-0">
