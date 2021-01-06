@@ -25,20 +25,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// connection to mongodb
 const strConnection = 'mongodb+srv://admin:admin@cluster0.gttyd.mongodb.net/sample_analytics?retryWrites=true&w=majority';
 mongoose.connect(strConnection, {useNewUrlParser: true});
 
-// Here we define the structure of our Schema
+// here we define the structure of our Schema
 const Schema = mongoose.Schema;
 
 const empSchema = new Schema({
-    UserName:String,
+    Username:String,
     Name:String,
     Email:String,
     Address:String
 })
 
 const empModel = mongoose.model('customers', empSchema);
+
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
 
 app.get('/api/sample_analytics/customers', (req, res) => {
     
@@ -59,20 +64,22 @@ app.get('/api/sample_analytics/customers/:id',(req, res)=>{
 // We have to send the new employee information to the database
 app.post('/api/sample_analytics/customers',(req, res)=>{
     console.log('New Employee registered!');
-    console.log(req.body.UserName);
+    console.log(req.body.Username);
     console.log(req.body.Name);
     console.log(req.body.Email);
     console.log(req.body.Address);
 
     // Here we create the new employee with their details
-    EmpModel.create({
-      UserName:req.body.UserName,
+    empModel.create({
+      Username:req.body.Username,
       Name:req.body.Name,
       Email:req.body.Email,
       Address:req.body.Address
-    });
+    })
+    .then()
+    .catch();
 
-    res.render('Employee information saved');
+    res.send('Employee Information Saved');
 })
 
 app.get('/', (req, res) => {

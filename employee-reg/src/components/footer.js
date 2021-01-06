@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Navbar, NavbarBrand, Container } from 'react-bootstrap'
 
 export class Footer extends React.Component{

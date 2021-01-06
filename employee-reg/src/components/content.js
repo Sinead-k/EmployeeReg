@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Container, Row, Col, Card, ListGroupItem, ListGroup } from 'react-bootstrap';
 
 export class Content extends React.Component{
