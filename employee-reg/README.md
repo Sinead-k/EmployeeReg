@@ -4,7 +4,7 @@ to find employee information and lets employees update their details as well as 
 
 ## Main pages
 
-The main components that my app is comosed of are;
+The main components that my app is composed of are;
 
 ### `content.js = homepage`
 ### `manager.js`
